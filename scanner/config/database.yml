@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: scanner_production
-  username: scanner
-  password: <%= ENV['SCANNER_DATABASE_PASSWORD'] %>
+  username: root
+  password: mysql

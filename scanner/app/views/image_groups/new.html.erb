@@ -1,0 +1,7 @@
+<%=form_for @imagegroup do |f| %>
+	Name <%=f.text_field :name%></br>
+	Image <%=f.fields_for :images do |img|%>
+		<%=img.file_field :avatar %>
+	<%end %>
+	<%=f.submit "Create"%>
+<% end -%>
