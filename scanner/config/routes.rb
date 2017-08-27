@@ -18,8 +18,17 @@ Rails.application.routes.draw do
   #   resources :products
 
   # Example resource route with options:
-    resources :products 
+
+    resources :products do
+      collection do
+        post :scanner
+      end
+    end 
     resources :image_groups
+    resources :inventories
+    resources :carts do
+      
+    end
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

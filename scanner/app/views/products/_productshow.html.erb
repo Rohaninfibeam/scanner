@@ -1,0 +1,146 @@
+<%= stylesheet_link_tag 'slick' %>
+<%= stylesheet_link_tag 'slick_theme' %>
+<%= javascript_include_tag 'slick' %>
+<%= javascript_include_tag 'magnify' %>
+<%= stylesheet_link_tag 'magnify' %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="images">
+			<%product.image_group.images.each do |image|%>
+				<div>
+					<%=image_tag image.avatar.thumb('900x900#').url, :class=>"image-product",:data=>{"magnify-src"=> image.avatar.thumb('1200x1200#').url}%>
+				</div>
+			<% end%>
+		</div>
+		<%= form_for productcart, method: "put" do |cart|%>
+			<%=cart.fields_for :cart_items do |cart_items|%>
+				<%=cart_items.hidden_field :product_id,:value=>product.id%>
+				<div class="properties">
+					<div class=" title">
+						<%= product.name.capitalize%>
+					</div>
+					</br>
+					<div class="price-quantity row">
+						<div class="property col-xs-8">
+							<div class="minus">
+							   <a href="#">-</a>
+							</div>
+							<%=cart_items.text_field :quantity,:value=>@product.available_stock, :class=>"quantity",:maxlength=>@product.available_stock%>
+							<div class="plus">
+								<a href="#">+</a>
+							</div>
+						</div>
+						<div class="price col-xs-4">
+							<h4>₹<%=product.price%></h4>
+						</div>
+						
+					</div>
+				</div>
+				<div class="emp">
+					
+				</div>
+				<div class="message">
+					Item is added to cart
+				</div>
+			<% end %>
+			<div class="buy-now">
+				<%=cart.submit "Add To Cart"%>
+			</div>
+		<% end %>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$(".images").slick({});
+		$(".image-product").magnify();
+	})
+	 $(".edit_cart").submit(function(e){
+	    e.preventDefault();
+	    $(".message").addClass("txt");
+	    setTimeout(function() {
+	       $(".message").removeClass("txt");
+	    }, 12000);
+	  }) 
+</script>
+<style type="text/css">
+	.message{
+		position: fixed;
+		top: 0px;
+		height: 100px;
+		font-size: 50px;
+		color: black;
+		display: none;
+		text-align: center;
+		background-color: #673AB7;
+		width: 100%;
+	}
+	.message.txt{
+		display: block;
+	}
+	.container-fluid .magnify > .magnify-lens{
+		width: 500px;
+		height: 500px;
+	}
+	.container-fluid .magnify{
+		width: 100%;
+	}
+	.price-quantity{
+		padding-right: 24px;
+	}
+	.emp{
+		height: 150px;
+	}
+	.price-quantity .price{
+	    text-align: center;
+		background-color: green;
+	}
+	.price-quantity .price h4{
+		font-size: 72px;
+	    color: white;
+	}	
+
+	.title{
+	    text-align: center;
+		font-size: 62px;
+		padding-top: 29px;
+	}
+	.image-product{
+		width: 100%;
+		height: 50%;
+	}
+	.properties{
+		font-size: 50px;
+		padding-left: 25px;
+		padding-bottom: 200px;
+	}
+	.properties .property{
+		display: block;
+	}
+	.properties .property .quantity{
+		text-align: center;
+		width: 42%;
+		height: 99px;
+	}
+	.properties .property .minus, .properties .property .plus{
+		display: inline-block;
+		width: 25%;
+		border: 1px solid green;
+		background-color: green;
+		color: white;
+		text-align: center;
+	}
+	.properties .property .minus a, .properties .property .plus a{
+		color: white;
+		font-size: 70px;
+	}
+	.buy-now input{
+		width: 100%;
+	    height: 146px;
+	    position: fixed;
+	    bottom: 0px;
+	    left: 0px;
+	    background-color: green;
+	    color: white;
+	    font-size: 58px;
+	}
+</style>

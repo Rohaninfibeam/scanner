@@ -10,5 +10,13 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
  Rails.application.config.assets.precompile += [ 'search.js',
  													'findproduct.css',
- 													'findproduct.js'
+ 													'findproduct.js',
+ 													'bootstrap.js',
+ 													'bootstrap.css',
+ 													'bootstrap-theme.css',
+ 													'slick.js',
+ 													'slick.css',
+ 													'slick_theme.css',
+ 													'magnify.css',
+ 													'magnify.js'
  												]

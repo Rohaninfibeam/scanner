@@ -25,8 +25,8 @@ function load_quagga(){
           last_result = [];
           Quagga.stop();
           $.ajax({
-            type: "POST",
-            url: '/products/get_barcode',
+            type: "post",
+            url: '/products/scanner',
             data: { upc: code }
           });
         }
@@ -52,3 +52,9 @@ function load_quagga(){
   }
 };
 $(document).on('turbolinks:load', load_quagga);
+$(function(){
+  $("#barcode-scanner").click(function(){
+    load_quagga();
+  }); 
+ 
+})

@@ -1,0 +1,5 @@
+<%=form_for @inventory do |inv|%>
+	<%=inv.number_field :available%>
+	<%=inv.number_field :sold_out%>
+	<%=inv.submit "Create Inventory"%>
+<% end %>

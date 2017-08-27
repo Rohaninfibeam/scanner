@@ -1,5 +1,9 @@
 <%=form_for @product do |product|%>
-	<%=product.text_field :name %>
-	<%=product.text_field :description%>
-	<%=product.number_field :price%>
+	Name<%=product.text_field :name %></br>
+	Description<%=product.text_field :description%></br>
+	Price<%=product.number_field :price%></br>
+	Upc code<%=product.text_field :upc%></br>
+	Inventory id<%=product.select :inventory_id, @inventory_ids%></br>
+	Image Group id<%=product.select :image_group_id, @image_ids%></br>
+	<%=product.submit "Create product"%>
 <% end %>
